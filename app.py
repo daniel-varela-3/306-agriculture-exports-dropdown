@@ -35,7 +35,7 @@ app.layout = html.Div(children=[
                 dcc.Dropdown(
                     id='options-drop',
                     options=[{'label': i, 'value': i} for i in list_of_columns],
-                    value='corn'
+                    value='Lowest minimum wage'
                 ),
         ], className='two columns'),
         html.Div([dcc.Graph(id='figure-1'),
@@ -52,15 +52,14 @@ app.layout = html.Div(children=[
 @app.callback(Output('figure-1', 'figure'),
              [Input('options-drop', 'value')])
 def make_figure(varname):
-    myheading1 = f"Wow! That's a lot of {varname}!"
     mygraphtitle = f'{varname} since 1968, by state'
     mycolorscale = 'algae' # Note: The error message will list possible color scales.
-    mycolorbartitle = "USD"
+    mycolorbartitle = "Minimum wage (USD)"
 
     data=go.Choropleth(
-        locations=df3['State_code'], # Spatial coordinates
+        locations=df['State_code'], # Spatial coordinates
         locationmode = 'USA-states', # set of locations match entries in `locations`
-        z = df3[varname].astype(float), # Data to be color-coded
+        z = df[varname].astype(float), # Data to be color-coded
         colorscale = mycolorscale,
         colorbar_title = mycolorbartitle,
     )
