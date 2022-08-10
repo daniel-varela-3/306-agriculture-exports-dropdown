@@ -64,8 +64,6 @@ def make_figure(varname):
         colorscale = mycolorscale,
         colorbar_title = mycolorbartitle,
     )
-
-
     fig = go.Figure(data)
     fig.update_layout(
         title_text = mygraphtitle,
